@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS BlogDB;
+
+USE BlogDB;
+
+
+CREATE TABLE Autor (
+    AutorID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeAutor VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE Post (
+    PostID INT AUTO_INCREMENT PRIMARY KEY,
+    Titulo VARCHAR(255) NOT NULL,
+    Conteudo TEXT,
+    DataPublicacao DATE,
+    AutorID INT,
+    FOREIGN KEY (AutorID) REFERENCES Autor(AutorID)
+);
+
+CREATE TABLE Comentario (
+    ComentarioID INT AUTO_INCREMENT PRIMARY KEY,
+    TextoComentario TEXT NOT NULL,
+    DataComentario DATE,
+    AutorID INT,
+    PostID INT,
+    FOREIGN KEY (AutorID) REFERENCES Autor(AutorID),
+    FOREIGN KEY (PostID) REFERENCES Post(PostID)
+);

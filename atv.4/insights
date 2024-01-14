@@ -1,0 +1,32 @@
+SELECT * FROM transacoes;
+
+SELECT ID_Transacao AS ID, Data AS Data_Transacao, Valor AS Valor_Transacao
+FROM transacoes;
+
+SELECT * FROM transacoes
+WHERE Valor > 100.00;
+
+SELECT * FROM transacoes
+ORDER BY Valor DESC;
+
+SELECT 
+    AVG(Valor) AS Valor_Medio,
+    MAX(Valor) AS Valor_Maximo,
+    MIN(Valor) AS Valor_Minimo,
+    COUNT(*) AS Total_Transacoes
+FROM transacoes;
+
+SELECT Produto, AVG(Valor) AS Media_Valor
+FROM transacoes
+GROUP BY Produto;
+
+SELECT 
+    Categoria,
+    COUNT(Produto) AS Total_Produtos_Vendidos,
+    SUM(Valor) AS Valor_Total_Vendas,
+    AVG(Valor) AS Media_Valor_Por_Transacao
+FROM transacoes
+GROUP BY Categoria;
+
+
+Essas consultas ajudariam a realizar diferentes tipos de análises nos dados de transações da empresa

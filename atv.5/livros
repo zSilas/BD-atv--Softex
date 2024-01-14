@@ -1,0 +1,35 @@
+-- Inserindo autores
+INSERT INTO Autores (Nome, Nacionalidade) VALUES
+    ('Autor 1', 'Nacionalidade 1'),
+    ('Autor 2', 'Nacionalidade 2'),
+    ('Autor 3', 'Nacionalidade 1');
+
+-- Inserindo livros associados aos autores
+INSERT INTO Livros (Titulo, AnoPublicacao, AutorID) VALUES
+    ('Livro 1', 2000, 1),
+    ('Livro 2', 2005, 1),
+    ('Livro 3', 2010, 2),
+    ('Livro 4', 2015, 2),
+    ('Livro 5', 2020, 3);
+
+SELECT Autores.Nome, Livros.Titulo
+FROM Autores
+INNER JOIN Livros ON Autores.AutorID = Livros.AutorID;
+
+SELECT Autores.Nome AS Nome_Autor, Livros.Titulo, Livros.AnoPublicacao
+FROM Autores
+INNER JOIN Livros ON Autores.AutorID = Livros.AutorID;
+
+SELECT Autores.Nome, Livros.Titulo, Livros.AnoPublicacao
+FROM Autores
+LEFT JOIN Livros ON Autores.AutorID = Livros.AutorID;
+
+SELECT Autores.Nome, Livros.Titulo
+FROM Autores
+INNER JOIN Livros ON Autores.AutorID = Livros.AutorID
+WHERE Autores.Nacionalidade = 'Nacionalidade 1';
+
+SELECT Autores.Nome, COUNT(Livros.LivroID) AS Total_Livros_Escritos
+FROM Autores
+LEFT JOIN Livros ON Autores.AutorID = Livros.AutorID
+GROUP BY Autores.Nome;
